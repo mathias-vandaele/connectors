@@ -16,6 +16,11 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branch_name }}
 
+      - name: Check Java and Maven version
+        run: |
+          java -version
+          mvn -version
+          
       - name: install-uniquet
         run: |
           mvn install -pl element-template-generator/uniquet -am
