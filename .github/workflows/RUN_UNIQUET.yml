@@ -11,16 +11,17 @@ jobs:
   run-uniquet-and-push:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.inputs.branch_name }}
 
-      - name: Check Java and Maven version
-        run: |
-          java -version
-          mvn -version
-          
       - name: install-uniquet
         run: |
           mvn install -pl element-template-generator/uniquet -am
